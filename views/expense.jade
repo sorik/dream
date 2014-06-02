@@ -1,0 +1,52 @@
+doctype html
+html(lang='en' ng-app='myExpense')
+  head
+    script(src="modernizer/modernizr.js")
+    script(src="angular/angular.js")
+    script(src="js/expense.js")
+    link(rel="stylesheet" href="foundation/css/foundation.css")
+    link(rel="stylesheet" href="bower-foundation-datepicker/foundation-datepicker.css")
+    link(rel="stylesheet" href="css/expense.css")
+
+    <meta name="viewport" content="initial-scale=1.0">
+
+  body
+    div(class="row vertical-center")
+      div(class="large-12 large-centered columns text-center")
+        div(ng-controller='expenseCtrl')
+          div(class="row")
+            div(class="small-9 columns")
+              input(type="text" class="span2" ng-model="expenseDate" id="datepicker")
+          div(class="row")
+            div(class="small-12 columns")
+              ul(class="button-group")
+                li(ng-repeat="item in popularItems" ng-click="setItem(item)")
+                  a(class="tiny success button"){{item}}
+                li(ng-repeat="category in categories")
+                  a(ng-if="category.items.length > 0" data-dropdown="{{category.category}}" class="tiny button dropdown"){{category.category}}
+                  a(ng-if="category.items.length == 0" ng-click="setItem(category.category)" class="tiny button"){{category.category}}
+          div(class="row")
+            div(class="small-12 columns")
+              input(type="text", placeholder="amount" ng-model="currentAmount")
+          div(class="row")
+            div(class="small-9 columns")
+              p {{currentItem? currentItem : 'Select Item'}} : {{currentAmount? currentAmount : 'Input amount'}}
+          div(class="row")
+            div(class="small-4 small-centered columns")
+              button(class="tiny button round" ng-click="saveExpense()") Save
+          ul(ng-repeat="category in categories" id="{{category.category}}" data-dropdown-content class="f-dropdown tiny")
+            li(ng-repeat="item in category.items" ng-click="setItemAndClose(category.category, item)")
+              a {{item}}
+      div(class="large-12 columns")
+        div(ng-controller="expenseListCtrl")
+          div(class="large-3 columns")
+            a(class="tiny success button" ng-click="showExpenses()") Details
+          div(class="large-10 columns")
+            p {{expenseList}}
+
+    script(src="jquery/dist/jquery.js")
+    script(src="fastclick/lib/fastclick.js")
+    script(src="foundation/js/foundation.min.js")
+    script(src="bower-foundation-datepicker/foundation-datepicker.js")
+    script $(document).foundation();
+

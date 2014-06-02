@@ -1,0 +1,33 @@
+doctype html
+html(lang='en' ng-app='myNews')
+  head
+    script(src="jquery/dist/jquery.js")
+    script(src="angular/angular.js")
+    script(src="js/news.js")
+  body
+    div(ng-controller='newsCtrl')
+      nav
+        <a href="#" ng-click="activeMenu='insert'">Insert</a>
+        <a href="#" ng-click="activeMenu='select'">Select</a>
+        <a href="#" ng-click="activeMenu='train'">Train</a>
+      div(ng-show="IsActive('insert')")
+        label Content
+          input(type="text", ng-model="content") 
+        br
+        label Notes
+          input(type="text", ng-model="title")
+        br
+        button(ng-click="addNews()") Save
+
+      div(ng-show="IsActive('select')")
+        p Select article from here
+      div(ng-show="IsActive('train')")
+        br
+        news-original
+        br
+        news-training-start
+        br
+        news-training
+
+
+

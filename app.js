@@ -29,6 +29,6 @@ require('./routes')(app);
 require('./database/news_repository')(app);
 require('./database/expense_repository')(app)
 
-app.listen(8004);
+app.listen(process.env.PORT || 8004);
 console.log('server is running');
 

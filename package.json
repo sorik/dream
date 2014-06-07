@@ -2,19 +2,15 @@
   "name": "dream",
   "version": "0.0.1",
   "description": "This is what I AM DREAMING",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "test",
     "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
-    "url": "not yet"
+    "url": "git@bitbucket.org:sorik/dream.git"
   },
-  "keywords": [
-    "not",
-    "yet"
-  ],
   "author": "Sori",
   "license": "MIT",
   "dependencies": {

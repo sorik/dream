@@ -1,0 +1,40 @@
+doctype html
+html(lang='en' ng-app='myExpense')
+  head
+    script(src="modernizer/modernizr.js")
+    script(src="angular/angular.js")
+    script(src="js/expense/expense.js")
+    script(src="js/expense/expense-insert.js")
+    script(src="js/expense/expense-list.js")
+    link(rel="stylesheet" href="foundation/css/foundation.css")
+    link(rel="stylesheet" href="bower-foundation-datepicker/foundation-datepicker.css")
+    link(rel="stylesheet" href="css/expense.css")
+
+    <meta name="viewport" content="initial-scale=1.0">
+    //- block head
+  body
+    div(ng-controller="expenseMenuCtrl")
+      div(class="off-canvas-wrap" data-offcanvas)
+        div(class="inner-wrap")
+          nav(class="tab-bar")
+            section(class="left-small")
+              a(class="left-off-canvas-toggle menu-icon")
+                span
+            section(class="right tab-bar-section") 
+              h3(class="title") {{currentActiveMenuItem}}
+
+          aside(class="left-off-canvas-menu")
+           ul(class="off-canvas-list")
+            li(ng-repeat="item in menu" ng-click="setActiveMenuItem(item)")
+              a {{item}}
+          section(class="main-section" ng-if="isActive('Insert')")
+            include partials/expense-insert
+          section(class="main-section" ng-if="isActive('Week')")
+            include partials/expense-list
+          a(class="exit-off-canvas")
+  
+    script(src="jquery/dist/jquery.js")
+    script(src="fastclick/lib/fastclick.js")
+    script(src="foundation/js/foundation.min.js")
+    script(src="bower-foundation-datepicker/foundation-datepicker.js")
+    script $(document).foundation();

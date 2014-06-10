@@ -3,7 +3,7 @@ module.exports = function(app){
     res.render('news');
   });
 
-  app.get('/expense', function(req, res){
-    res.render('expense');
-  });  
+  app.get('/expense', function(req, res) {
+    res.render('expense-layout');
+  }); 
 }

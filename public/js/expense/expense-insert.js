@@ -1,10 +1,10 @@
 'use strict';
 
-var myApp = angular.module('myExpense', []);
-
 var popularItems = ['Lunch', 'Coffee'];
 var categories = [ {'category': 'Meal',
                     'items': ['Breakfast', 'Lunch', 'Dinner']},
+                    {'category': 'Food',
+                     'items': ['Meat', 'Veg', 'Food etc']},
                     {'category': 'Coffee',
                      'items': []},
                     {'category': 'Beer',
@@ -28,7 +28,7 @@ var formatDate = function(date) {
   return datenum + "-" + month + "-" + year + " " + day;
 };
 
-myApp.controller('expenseCtrl', function($scope, $http){
+myApp.controller('expenseInsertCtrl', function($scope, $http){
   $scope.popularItems = popularItems;
   $scope.categories = categories;
 
@@ -65,12 +65,3 @@ myApp.controller('expenseCtrl', function($scope, $http){
       $scope.expenseDate = formatDate(ev.date);
   });
 });
-
-myApp.controller('expenseListCtrl', function($scope, $http){
-  $scope.showExpenses = function(){
-    $http.get('/data/expense').
-      success(function(data){
-        $scope.expenseList = data;
-      });
-  }
-})

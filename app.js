@@ -4,7 +4,7 @@ var path = require('path');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk(process.env.MONGOHQ_URL);
+var db = monk(process.env.MONGOHQ_URL || 'localhost:27017/dream');
 
 var bodyParser = require('body-parser');
 
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded());
 
 require('./routes')(app);
 require('./database/news_repository')(app);
-require('./database/expense_repository')(app)
+require('./database/expense_repository')(app);
 
 app.listen(process.env.PORT || 8004);
 console.log('server is running');

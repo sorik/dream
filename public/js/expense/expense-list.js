@@ -1,14 +1,21 @@
 'use strict';
 
-var getStartAndEndDayOfWeek = function(date) {
+var getSaturdayOfWeek = function(date) {
   date.setHours(0,0,0,0);
 
-  var monday = new Date(date);
-  monday.setDate(monday.getDate() - monday.getDay() + 1);
-  var sunday = new Date(date);
-  sunday.setDate(sunday.getDate() - sunday.getDay() + 7);
+  var saturday = new Date(date);
+  saturday.setDate(saturday.getDate() - saturday.getDay() + 6);
 
-  return [monday, sunday];
+  return saturday;  
+};
+
+var getSundayOfWeek = function(date) {
+  date.setHours(0,0,0,0);
+
+  var sunday = new Date(date);
+  sunday.setDate(sunday.getDate() - sunday.getDay()); 
+
+  return sunday; 
 };
 
 var formatDate = function(date) {
@@ -20,13 +27,16 @@ var formatDate = function(date) {
 
 
 myApp.controller('expenseListCtrl', function($scope, $http){
+
+  var sunday = getSundayOfWeek(new Date());
+  var saturday = getSaturdayOfWeek(new Date());
+
   $http.get('/data/expense').
   success(function(data){
     $scope.expenseList = data;
   });
 
-  $scope.selectedWeek = getStartAndEndDayOfWeek(new Date());
-  $scope.displayWeekStart = formatDate($scope.selectedWeek[0]);
-  $scope.displayWeekEnd = formatDate($scope.selectedWeek[1]);
+  $scope.displayWeekStart = formatDate(sunday);
+  $scope.displayWeekEnd = formatDate(saturday);
 
 });

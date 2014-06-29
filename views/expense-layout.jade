@@ -13,25 +13,25 @@ html(lang='en' ng-app='myExpense')
     <meta name="viewport" content="initial-scale=1.0">
     //- block head
   body
-    div(ng-controller="expenseMenuCtrl")
-      div(class="off-canvas-wrap" data-offcanvas)
-        div(class="inner-wrap")
+    div(ng-controller="expenseMenuCtrl" style="height: inherit")
+      div(class="off-canvas-wrap" style="height: inherit" data-offcanvas)
+        div(class="inner-wrap" style="height: inherit")
           nav(class="tab-bar")
             section(class="left-small")
               a(class="left-off-canvas-toggle menu-icon")
                 span
             section(class="right tab-bar-section") 
-              h3(class="title") {{currentActiveMenuItem}}
-
-          aside(class="left-off-canvas-menu")
-           ul(class="off-canvas-list")
-            li(ng-repeat="item in menu" ng-click="setActiveMenuItem(item)")
-              a {{item}}
+              h3(class="title") {{currentActiveMenuItem}} 
           section(class="main-section" ng-if="isActive('Insert')")
             include partials/expense-insert
           section(class="main-section" ng-if="isActive('Week')")
             include partials/expense-list
           a(class="exit-off-canvas")
+
+          aside(class="left-off-canvas-menu")
+           ul(class="off-canvas-list")
+            li(ng-repeat="item in menu" ng-click="setActiveMenuItem(item)")
+              a {{item}}
   
     script(src="jquery/dist/jquery.js")
     script(src="fastclick/lib/fastclick.js")

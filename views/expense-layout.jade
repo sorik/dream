@@ -26,6 +26,8 @@ html(lang='en' ng-app='myExpense')
             include partials/expense-insert
           section(class="main-section" ng-if="isActive('Week')")
             include partials/expense-list
+          section(class="main-section" ng-if="isActive('Month')")
+            include partials/expense-list
           a(class="exit-off-canvas")
 
           aside(class="left-off-canvas-menu")

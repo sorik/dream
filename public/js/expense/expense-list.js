@@ -1,21 +1,19 @@
 'use strict';
 
-var getSaturdayOfWeek = function(date) {
-  date.setHours(0,0,0,0);
-
-  var saturday = new Date(date);
-  saturday.setDate(saturday.getDate() - saturday.getDay() + 6);
-
-  return saturday;  
+var getSaturdayOfWeek = function(date) { 
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6); 
 };
 
 var getSundayOfWeek = function(date) {
-  date.setHours(0,0,0,0);
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+};
 
-  var sunday = new Date(date);
-  sunday.setDate(sunday.getDate() - sunday.getDay()); 
+var getFirstDayOfMonth = function(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+};
 
-  return sunday; 
+var getLastDayOfMonth = function(date) {
+  return new Date(date.getFullYear(), date.getMonth()+1, 0);
 };
 
 var formatDate = function(date) {
@@ -28,10 +26,15 @@ var formatDate = function(date) {
 
 myApp.controller('expenseListCtrl', function($scope, $http){
 
-  var sunday = getSundayOfWeek(new Date());
-  var saturday = getSaturdayOfWeek(new Date());
+  if ($scope.currentActiveMenuItem == 'Week') {
+    var startDate = getSundayOfWeek(new Date());
+    var endDate = getSaturdayOfWeek(new Date());
+  } else {
+    var startDate = getFirstDayOfMonth(new Date());
+    var endDate = getLastDayOfMonth(new Date());
+  }
 
-  var queryParams = {start: sunday, end: saturday};
+  var queryParams = {start: startDate, end: endDate};
   var encodedQueryParams = $.param(queryParams, true);
   var queryUri = '/data/expense' + '?' + encodedQueryParams;
 
@@ -40,7 +43,7 @@ myApp.controller('expenseListCtrl', function($scope, $http){
     $scope.expenseList = data;
   });
 
-  $scope.displayWeekStart = formatDate(sunday);
-  $scope.displayWeekEnd = formatDate(saturday);
+  $scope.displayWeekStart = formatDate(startDate);
+  $scope.displayWeekEnd = formatDate(endDate);
 
 });

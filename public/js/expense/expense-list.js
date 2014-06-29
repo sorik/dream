@@ -31,7 +31,11 @@ myApp.controller('expenseListCtrl', function($scope, $http){
   var sunday = getSundayOfWeek(new Date());
   var saturday = getSaturdayOfWeek(new Date());
 
-  $http.get('/data/expense').
+  var queryParams = {start: sunday, end: saturday};
+  var encodedQueryParams = $.param(queryParams, true);
+  var queryUri = '/data/expense' + '?' + encodedQueryParams;
+
+  $http.get(queryUri).
   success(function(data){
     $scope.expenseList = data;
   });

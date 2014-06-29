@@ -1,14 +1,25 @@
 module.exports = function(app){
+
+  var convertToTimeRangeQuery = function(query) {
+    var startDate = new Date(query.start);
+    var endDate = new Date(query.end);
+    return {date: {$gte: startDate.toJSON(), $lt: endDate.toJSON()}}
+  };
+
   app.get('/data/expense', function(req, res){
     var db = req.db;
     var expenses = db.get('expensecollection');
-    expenses.find({}, {}, function(e, docs){
+    
+    expenses.find(convertToTimeRangeQuery(req.query),
+                  {},
+                  function(e, docs){
       res.json(docs);
     });
   });
-  
+
   app.post('/data/expense/add', function(req, res){
   var db = req.db;
+
   db.get('expensecollection').insert(
     {"date": req.body.date,
      "item": req.body.item,

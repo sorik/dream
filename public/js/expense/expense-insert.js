@@ -19,7 +19,7 @@ var categories = [ {'category': 'Meal',
                      'items': ['Leisure', 'Clothes', 'Etc']},
                   ];
 
-var formatDate = function(date) {
+var formatDisplayDate = function(date) {
   var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
   var day = days[date.getDay()];
   var datenum = date.getDate();
@@ -28,11 +28,18 @@ var formatDate = function(date) {
   return datenum + "-" + month + "-" + year + " " + day;
 };
 
+var convertToJSONDate = function(displayDate) {
+  var regexp = /\d{1,4}/g;
+  var numbers = displayDate.match(regexp);
+  var date = new Date(numbers[2], numbers[1]-1, numbers[0]);
+  return date.toJSON();
+};
+
 myApp.controller('expenseInsertCtrl', function($scope, $http){
   $scope.popularItems = popularItems;
   $scope.categories = categories;
 
-  $scope.expenseDate = formatDate(new Date());
+  $scope.expenseDate = formatDisplayDate(new Date());
 
   $scope.setItem = function(item) {
     $scope.currentItem = item;
@@ -47,7 +54,7 @@ myApp.controller('expenseInsertCtrl', function($scope, $http){
 
   $scope.saveExpense = function() {
     $http.post('/data/expense/add',
-      {'date': $scope.expenseDate,
+      {'date': convertToJSONDate($scope.expenseDate),
        'item': $scope.currentItem,
        'amount': $scope.currentAmount}).
       success(function(data){
@@ -62,6 +69,6 @@ myApp.controller('expenseInsertCtrl', function($scope, $http){
   $('#datepicker').fdatepicker({
     format: 'dd-mm-yyyy D'
   }).on('changeDate', function(ev){
-      $scope.expenseDate = formatDate(ev.date);
+      $scope.expenseDate = formatDisplayDate(ev.date);
   });
 });

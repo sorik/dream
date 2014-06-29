@@ -20,7 +20,7 @@ var categories = [ {'category': 'Meal',
                   ];
 
 var formatDisplayDate = function(date) {
-  var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var day = days[date.getDay()];
   var datenum = date.getDate();
   var month = date.getMonth() + 1;
@@ -67,7 +67,7 @@ myApp.controller('expenseInsertCtrl', function($scope, $http){
   };
 
   $('#datepicker').fdatepicker({
-    format: 'dd-mm-yyyy D'
+    format: 'd-m-yyyy D'
   }).on('changeDate', function(ev){
       $scope.expenseDate = formatDisplayDate(ev.date);
   });

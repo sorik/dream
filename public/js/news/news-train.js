@@ -1,30 +1,6 @@
 'use strict';
 
-var news = angular.module('myNews', []);
-
-news.controller('newsCtrl', function($scope, $http, $compile, $element){
-
-  $scope.todayNews = '';
-
-  $http.get('/data/news').success(function(data) {
-    if (data.length > 0)
-      $scope.todayNews = data[0].content;   
-    else
-      $scope.todayNews = "no news"
-         
-    $scope.todayWords = $scope.todayNews.split(" ");
-    $scope.todayTraining = $scope.todayWords.slice(0);
-
-    $scope.hideTrain = true;
-  });
-
-  $scope.activeMenu = 'insert';  
-
-  $scope.IsActive = function(query) {
-    if ($scope.activeMenu == query) 
-      return true;
-    return false;
-  };
+news.controller('newsTrainCtrl', function($scope, $http){
 
   $scope.showTrain = function() {
     $scope.hideTrain = false;
@@ -37,18 +13,6 @@ news.controller('newsCtrl', function($scope, $http, $compile, $element){
   $scope.showTrainWord = function(index) {
     $scope.todayTraining[index] = $scope.todayWords[index];
   };
-
-  $scope.addNews = function() {
-    $http.post('/data/news/add', 
-              {"title": $scope.title, 
-               "content": $scope.content, 
-               "timestamp": new Date()})
-    .success(function(data) {
-      $scope.todayNews = $scope.content;
-      $scope.activeMenu = 'train';
-    });
-  };  
-
 });
 
 news.directive('newsWord', function(){

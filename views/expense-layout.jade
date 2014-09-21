@@ -23,11 +23,11 @@ html(lang='en' ng-app='myExpense')
             section(class="right tab-bar-section") 
               h3(class="title") {{currentActiveMenuItem}} 
           section(class="main-section" ng-if="isActive('Insert')")
-            include partials/expense-insert
+            include partials/expense/expense-insert
           section(class="main-section" ng-if="isActive('Week')")
-            include partials/expense-list
+            include partials/expense/expense-list
           section(class="main-section" ng-if="isActive('Month')")
-            include partials/expense-list
+            include partials/expense/expense-list
           a(class="exit-off-canvas")
 
           aside(class="left-off-canvas-menu")

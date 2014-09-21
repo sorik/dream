@@ -1,0 +1,8 @@
+div(ng-controller='newsInsertCtrl')
+  label Title
+    input(type="text", ng-model="title")
+  br
+  label Content
+    input(type="text", ng-model="content") 
+  br
+  button(ng-click="addNews()") Save

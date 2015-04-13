@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "postinstall": "bower install",
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",

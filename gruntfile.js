@@ -6,10 +6,19 @@ module.exports = function(grunt) {
           'src/app.js'
         ]
       }
+    },
+    bower: {
+      install: {
+        options: {
+          copy: false,
+          verbose: true
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-run');
+  grunt.loadNpmTasks('grunt-bower-task');
 
-  grunt.registerTask('serve', ['run:app']);
+  grunt.registerTask('serve', ['bower:install', 'run:app']);
 };

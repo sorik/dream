@@ -14,8 +14,7 @@
     "angular-resource": "~1.2.15",
     "jquery": "2.1.1",
     "foundation": "^5.2.2",
-    "modernizer": "2.8.2",
-    "fastclick": "1.0.2",
-    "bower-foundation-datepicker": "0.1.1"
+    "modernizr": "2.8.2",
+    "fastclick": "1.0.2"
   }
 }

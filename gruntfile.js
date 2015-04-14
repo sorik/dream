@@ -23,12 +23,22 @@ module.exports = function(grunt) {
           verbose: true
         }
       }
+    },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
+        reporter: require('jshint-stylish')
+      },
+      source: {
+        src: ['gruntfile.js', './src/public/js/{,*/}*.js']
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-run');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('serve', ['bower:install', 'run:app', 'watch']);
+  grunt.registerTask('serve', ['bower:install', 'jshint:source', 'run:app', 'watch']);
 };

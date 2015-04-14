@@ -4,7 +4,16 @@ module.exports = function(grunt) {
       app: {
         args: [
           'src/app.js'
-        ]
+        ],
+        options: {
+          wait: false
+        }
+      }
+    },
+    watch: {
+      bower: {
+        files: ['bower.json'],
+        tasks: ['bower:install']
       }
     },
     bower: {
@@ -19,6 +28,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-run');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('serve', ['bower:install', 'run:app']);
+  grunt.registerTask('serve', ['bower:install', 'run:app', 'watch']);
 };

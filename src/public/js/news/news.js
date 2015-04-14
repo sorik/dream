@@ -1,15 +1,14 @@
-'use strict';
+angular.module('myNews', [])
+  .controller('newsCtrl', function($scope){
+    'use strict';
 
-var news = angular.module('myNews', []);
+    $scope.activeMenu = 'Insert';
 
-news.controller('newsCtrl', function($scope){
+    $scope.IsActive = function(query) {
+      if ($scope.activeMenu === query) {
+        return true;
+      }
+      return false;
+    };
 
-  $scope.activeMenu = 'Insert';  
-
-  $scope.IsActive = function(query) {
-    if ($scope.activeMenu == query) 
-      return true;
-    return false;
-  };
-
-});
+  });

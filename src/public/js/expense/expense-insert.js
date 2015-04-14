@@ -1,41 +1,42 @@
-'use strict';
 
-var popularItems = ['Lunch', 'Coffee'];
-var categories = [ {'category': 'Meal',
-                    'items': ['Breakfast', 'Lunch', 'Dinner']},
-                    {'category': 'Food',
-                     'items': ['Meat', 'Veg', 'Food etc']},
-                    {'category': 'Coffee',
-                     'items': []},
-                    {'category': 'Beer',
-                     'items': []},
-                    {'category': 'Daily necessity',
-                     'items': []},
-                    {'category': 'Telephone',
-                     'items': []},
-                    {'category': 'Traffic',
-                     'items': ['Tram', 'Car oil']},
-                    {'category': 'Etc',
-                     'items': ['Leisure', 'Clothes', 'Etc']},
-                  ];
+angular.module('myExpense').controller('expenseInsertCtrl', function($scope, $http){
+  'use strict';
 
-var formatDisplayDate = function(date) {
-  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  var day = days[date.getDay()];
-  var datenum = date.getDate();
-  var month = date.getMonth() + 1;
-  var year = date.getFullYear();
-  return datenum + "-" + month + "-" + year + " " + day;
-};
+  var popularItems = ['Lunch', 'Coffee'];
+  var categories = [ {'category': 'Meal',
+                      'items': ['Breakfast', 'Lunch', 'Dinner']},
+                      {'category': 'Food',
+                       'items': ['Meat', 'Veg', 'Food etc']},
+                      {'category': 'Coffee',
+                       'items': []},
+                      {'category': 'Beer',
+                       'items': []},
+                      {'category': 'Daily necessity',
+                       'items': []},
+                      {'category': 'Telephone',
+                       'items': []},
+                      {'category': 'Traffic',
+                       'items': ['Tram', 'Car oil']},
+                      {'category': 'Etc',
+                       'items': ['Leisure', 'Clothes', 'Etc']},
+                    ];
 
-var convertToJSONDate = function(displayDate) {
-  var regexp = /\d{1,4}/g;
-  var numbers = displayDate.match(regexp);
-  var date = new Date(numbers[2], numbers[1]-1, numbers[0]);
-  return date.toJSON();
-};
+  var formatDisplayDate = function(date) {
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var day = days[date.getDay()];
+    var datenum = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    return datenum + '-' + month + '-' + year + ' '  + day;
+  };
 
-myApp.controller('expenseInsertCtrl', function($scope, $http){
+  var convertToJSONDate = function(displayDate) {
+    var regexp = /\d{1,4}/g;
+    var numbers = displayDate.match(regexp);
+    var date = new Date(numbers[2], numbers[1]-1, numbers[0]);
+    return date.toJSON();
+  };
+
   $scope.popularItems = popularItems;
   $scope.categories = categories;
 
@@ -57,18 +58,12 @@ myApp.controller('expenseInsertCtrl', function($scope, $http){
       {'date': convertToJSONDate($scope.expenseDate),
        'item': $scope.currentItem,
        'amount': $scope.currentAmount}).
-      success(function(data){
+      success(function(){
         $scope.currentItem = '';
-        $scope.currentAmount = '';      
+        $scope.currentAmount = '';
       }).
       error(function(error){
-        alert("try again");
+        alert('try again' + error);
       });
   };
-
-  $('#datepicker').fdatepicker({
-    format: 'd-m-yyyy D'
-  }).on('changeDate', function(ev){
-      $scope.expenseDate = formatDisplayDate(ev.date);
-  });
 });

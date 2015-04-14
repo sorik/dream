@@ -1,4 +1,8 @@
+/* global require, module */
+
 module.exports = function(grunt) {
+  'use strict';
+
   grunt.initConfig ({
     run: {
       app: {

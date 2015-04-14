@@ -12,6 +12,15 @@ module.exports = function(grunt) {
         options: {
           wait: false
         }
+      },
+      localMongodb: {
+        cmd: 'mongod',
+        args: [
+          '--dbpath=./data'
+        ],
+        options: {
+          wait: false
+        }
       }
     },
     watch: {
@@ -44,5 +53,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('serve', ['bower:install', 'jshint:source', 'run:app', 'watch']);
+  grunt.registerTask('serve-local', ['bower:install', 'jshint:source', 'run:localMongodb','run:app', 'watch']);
 };

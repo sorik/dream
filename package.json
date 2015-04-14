@@ -17,7 +17,7 @@
     "bower": "^1.3.4",
     "ejs": "^1.0.0",
     "jade": "^1.3.1",
-    "mongodb": "*",
+    "mongodb": "2.0.26",
     "monk": "*",
     "body-parser": "^1.0.0"
   },

@@ -6,7 +6,6 @@ module.exports = function(app){
     var db = req.db;
     var news = db.get('newstestcollection');
     news.find({}, {}, function(e, docs) {
-        console.log(docs);
         res.json(docs);
     });
   });

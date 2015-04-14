@@ -7,9 +7,6 @@ angular.module('myNews').controller('newsInsertCtrl', function($scope, $http){
                 'title': $scope.title,
                 'content': $scope.content,
                 'timestamp': new Date()
-              })
-          .success(function(data) {
-            console.log('saved' + data);
-          });
+              });
   };
 });

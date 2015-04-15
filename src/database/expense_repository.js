@@ -21,11 +21,11 @@ module.exports = function(app){
     expenses.find(convertToTimeRangeQuery(req.query),
                   {},
                   function(e, docs){
-      res.json(docs);
-    });
+                    res.json(docs);
+                  });
   });
 
-  app.post('/data/expense/add', function(req, res){
+  app.post('/data/expense', function(req, res){
     var db = req.db;
 
     db.get('expensecollection').insert(

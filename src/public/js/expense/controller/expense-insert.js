@@ -55,7 +55,7 @@ angular.module('myExpense')
     };
 
     $scope.saveExpense = function() {
-      ExpenseService.insert({
+      ExpenseService.save({
         date: convertToJSONDate($scope.expenseDate),
         item: $scope.currentItem,
         amount: $scope.currentAmount

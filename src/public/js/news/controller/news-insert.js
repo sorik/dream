@@ -3,7 +3,7 @@ angular.module('myNews')
     'use strict';
 
     $scope.addNews = function() {
-      NewsService.insert({
+      NewsService.save({
                           'title': $scope.title,
                           'content': $scope.content,
                           'timestamp': new Date()});

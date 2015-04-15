@@ -1,0 +1,28 @@
+/* global module */
+
+module.exports = function(config) {
+    config.set({
+        basePath: '../',
+        frameworks: ['jasmine'],
+        files: [
+            'bower_components/modernizr/modernizr.js',
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-mocks/angular-mocks.js',
+            'src/public/js/news/news.js',
+            'src/public/js/expense/expense.js',
+            'src/public/js/{,*/}*.js',
+            'tests/unit/{,*/}*.js'
+        ],
+
+        exclude: [],
+        reporter: ['mocha'],
+        hostname: 'localhost',
+        port: 9999,
+        browsers: ['PhantomJS'],
+        singleRun: false,
+        colors: true,
+        logLevel: config.LOG_INFO,
+        autoWatch: true
+    });
+};

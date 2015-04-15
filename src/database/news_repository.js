@@ -10,7 +10,7 @@ module.exports = function(app){
     });
   });
 
-  app.post('/data/news/add', function(req, res){
+  app.post('/data/news', function(req, res){
     var db = req.db;
     db.get('newstestcollection').
       insert(

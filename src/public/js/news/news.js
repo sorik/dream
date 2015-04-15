@@ -1,1 +1,1 @@
-angular.module('myNews', []);
+angular.module('myNews', ['ngResource']);

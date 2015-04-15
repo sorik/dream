@@ -3,11 +3,14 @@ html(lang='en' ng-app='myNews')
   head
     script(src="jquery/dist/jquery.js")
     script(src="angular/angular.js")
+    script(src="angular-resource/angular-resource.js")
     script(src="js/news/news.js")
-    script(src="js/news/news-list.js")
-    script(src="js/news/news-insert.js")
-    script(src="js/news/news-train.js")
-  body  
+    script(src="js/news/controller/news-menu.js")
+    script(src="js/news/controller/news-list.js")
+    script(src="js/news/controller/news-insert.js")
+    script(src="js/news/controller/news-train.js")
+    script(src="js/news/service/news-service.js")
+  body
     div(ng-controller='newsCtrl')
       nav
         <a href="#" ng-click="activeMenu='Insert'">Insert</a>

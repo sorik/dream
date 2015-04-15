@@ -12,7 +12,7 @@ angular.module('myNews')
         $interval.cancel(stopDisplaying);
         stopDisplaying = undefined;
       }, timeout);
-    }
+    };
 
     $scope.addNews = function() {
       NewsService.save({

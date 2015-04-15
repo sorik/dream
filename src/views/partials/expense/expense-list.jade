@@ -3,3 +3,4 @@ div(class="large-10 columns")
   div(ng-controller='expenseListCtrl')
     p {{displayWeekStart + ' ~ ' + displayWeekEnd}}
     p {{expenseList}}
+    p(ng-show="errorMessage.length > 0") {{ errorMessage }}

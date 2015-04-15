@@ -36,7 +36,16 @@ angular.module('myExpense')
       endDate = getLastDayOfMonth(new Date());
     }
 
-    $scope.expenseList = ExpenseService.query({start: startDate, end: endDate});
+    $scope.errorMessage = '';
+    ExpenseService.query(
+      {start: startDate, end: endDate},
+      function(expenses) {
+        $scope.expenseList = expenses;
+      },
+      function(error) {
+        $scope.errorMessage = 'Failed to get the list of expenses. Try again. ' + '(' + error.data.message + ')';
+      }
+    );
 
     $scope.displayWeekStart = formatDate(startDate);
     $scope.displayWeekEnd = formatDate(endDate);

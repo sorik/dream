@@ -17,17 +17,19 @@ module.exports = function(app){
   app.get('/data/expense', function(req, res){
     var db = req.db;
     var expenses = db.get('expensecollection');
-
     expenses.find(convertToTimeRangeQuery(req.query),
                   {},
-                  function(e, docs){
-                    res.json(docs);
+                  function(err, docs){
+                    if (err) {
+                      res.send(500, {message: 'mongodb resturns error.' + err.message});
+                    } else {
+                      res.json(docs);
+                    }
                   });
   });
 
   app.post('/data/expense', function(req, res){
     var db = req.db;
-
     db.get('expensecollection').insert(
       {
         date: req.body.date,
@@ -36,9 +38,9 @@ module.exports = function(app){
       },
        function(err) {
         if (err) {
-          res.send('fail');
+          res.send(500, {message: 'mongodb resturns error.' + err.message});
         } else {
-          res.send('success');
+          res.send(200);
         }
        });
   });

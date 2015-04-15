@@ -30,9 +30,10 @@
     "grunt-karma": "~0.8.3",
     "jshint-stylish": "~1.0.1",
     "karma": "~0.12.21",
-    "karma-jasmine": "~0.2.2",
+    "karma-jasmine": "~0.3.0",
     "karma-mocha-reporter": "^0.3.1",
     "karma-phantomjs-launcher": "~0.1.4",
-    "phantomjs": "~1.9.7-15"
+    "phantomjs": "~1.9.7-15",
+    "jasmine": "~2.1.0"
   }
 }

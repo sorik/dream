@@ -8,6 +8,7 @@ module.exports = function(config) {
             'bower_components/modernizr/modernizr.js',
             'bower_components/jquery/dist/jquery.js',
             'bower_components/angular/angular.js',
+            'bower_components/angular-resource/angular-resource.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'src/public/js/news/news.js',
             'src/public/js/expense/expense.js',

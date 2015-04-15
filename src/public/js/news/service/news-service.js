@@ -5,6 +5,10 @@ angular.module('myNews')
                 {
                   insert: {
                     method: 'POST'
+                  },
+                  get: {
+                    method: 'GET',
+                    isArray: true
                   }
                 });
   }]);

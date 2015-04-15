@@ -1,11 +1,10 @@
-angular.module('myNews').controller('newsListCtrl', function($scope, $http){
-  'use strict';
+angular.module('myNews')
+  .controller('newsListCtrl', function($scope, NewsService){
+    'use strict';
 
-  $http.get('/data/news').success(function(data) {
-    $scope.newsList = data;
+    $scope.newsList = NewsService.get();
+
+    $scope.startTrain = function() {
+      // do something
+    };
   });
-
-  $scope.startTrain = function() {
-    // do something
-  };
-});

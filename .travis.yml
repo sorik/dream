@@ -1,6 +1,9 @@
-
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 install: npm install
 before_script: grunt test
+deploy:
+  provider: heroku
+  api_key:
+    secure: Q/A9U5pz1r2BaJfhmtJPD2/pxx8Lj1NKQuGk6bHjM2/ZHzRCZ+5Ru+hBoyc8/cp/ucAPo9U8Sc6kiLB4EKQcZXxAY/idEdDZxtiWyIsRGga0MfKrVxsdon6if1+We5lHAL+tOYANQaSAfWLciAvmCC5SOKAlU6HjlVST80zT8/I=

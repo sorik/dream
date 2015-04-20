@@ -33,6 +33,10 @@ module.exports = function(grunt) {
       bower: {
         files: ['bower.json'],
         tasks: ['bower:install']
+      },
+      jsTest: {
+        files: ['tests/unit/{,**/}*.js'],
+        tasks: ['jshint:test', 'karma:unit']
       }
     },
     bower: {

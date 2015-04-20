@@ -2,7 +2,7 @@
 var express = require('express');
 var path = require('path');
 
-var mongo = require('mongodb');
+require('mongodb');
 var monk = require('monk');
 var db = monk(process.env.MONGOHQ_URL || 'localhost:27017/dream');
 

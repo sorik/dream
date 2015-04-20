@@ -1,16 +1,11 @@
 angular.module('myNews')
-  .controller('newsInsertCtrl', function($scope, $interval, NewsService){
+  .controller('newsInsertCtrl', function($scope, $timeout, NewsService){
     'use strict';
 
     $scope.savingResult = '';
-    var stopDisplaying;
     var stopDisplayResultMessage = function(timeout) {
-      if ( angular.isDefined(stopDisplaying) ) return;
-
-      stopDisplaying = $interval(function(){
+      $timeout(function() {
         $scope.savingResult = '';
-        $interval.cancel(stopDisplaying);
-        stopDisplaying = undefined;
       }, timeout);
     };
 
@@ -27,8 +22,8 @@ angular.module('myNews')
                           stopDisplayResultMessage(3000);
                         },
                         function(error) {
-                          console.log(error);
-                          $scope.savingResult = 'Failed to save. Try again.' + '(' + error.data.message + ')';
+                          var errorMessage = error.data ? error.data.message : '';
+                          $scope.savingResult = 'Failed to save. Try again.' + '(' + errorMessage + ')';
                           stopDisplayResultMessage(3000);
                         });
     };

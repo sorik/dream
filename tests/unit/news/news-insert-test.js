@@ -73,6 +73,7 @@ describe('newsInsertCtrl', function() {
 						return deferred.promise;
 					});
 				});
+
 				it('should display failed message', function() {
 					scope.addNews();
 					scope.$digest();

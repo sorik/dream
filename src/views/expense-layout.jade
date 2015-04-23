@@ -23,7 +23,7 @@ html(lang='en' ng-app='myExpense')
               a(class="left-off-canvas-toggle menu-icon")
                 span
             section(class="right tab-bar-section")
-              h3(class="title") {{currentActiveMenuItem}}
+              h3(class="title" ng-bind="currentActiveMenuItem")
           section(class="main-section" ng-if="isActive('Insert')")
             include partials/expense/expense-insert
           section(class="main-section" ng-if="isActive('Week')")

@@ -2,5 +2,5 @@
 div(class="large-10 columns")
   div(ng-controller='expenseListCtrl')
     p {{displayWeekStart + ' ~ ' + displayWeekEnd}}
-    p {{expenseList}}
-    p(ng-show="errorMessage.length > 0") {{ errorMessage }}
+    p(ng-bind="expenseList")
+    p(ng-show="errorMessage.length > 0" ng-bind="errorMessage")

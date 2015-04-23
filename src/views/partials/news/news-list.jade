@@ -1,4 +1,4 @@
 div(ng-controller='newsListCtrl')
   ul
-    li(ng-repeat="news in newsList" ng-click="startTrain(news)") {{news.title}}
-  p(ng-show="errorMessage.length > 0") {{ errorMessage }}
+    li(ng-repeat="news in newsList" ng-click="startTrain(news)") {{news.title}} @ {{news.timestamp}}
+  p(ng-show="errorMessage.length > 0" ng-bind="errorMessage")

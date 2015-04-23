@@ -9,7 +9,7 @@ angular.module('myNews')
             $scope.errorMessage = 'Failed to retrieve news articles. Try again. ' + '(' + error + ')';
         });
 
-        $scope.startTrain = function() {
-            // do something
+        $scope.startTrain = function(news) {
+            $scope.activeMenu = 'Train';
         };
     });

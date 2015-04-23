@@ -11,7 +11,6 @@ var bodyParser = require('body-parser');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(function(req, res, next) {
     req.db = db;

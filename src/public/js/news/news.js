@@ -7,12 +7,38 @@ angular.module('myNews', ['ngResource', 'ui.router'])
         $stateProvider
             .state('news', {
                 url: '/',
-                templateUrl: 'partials/news/news-list.html',
-                controller: 'newsListCtrl'
+                views: {
+                    'list': {
+                        templateUrl: 'partials/news/news-list.html',
+                        controller: 'newsListCtrl'
+                    }
+                }
             })
             .state('news.show', {
                 url: ':id',
-                templateUrl: 'partials/news/news-show.html',
-                controller: 'newsShowCtrl'
+                views: {
+                    'content@': {
+                        templateUrl: 'partials/news/news-show.html',
+                        controller: 'newsShowCtrl'
+                    }
+                }
+            })
+            .state('news.insert', {
+                url: 'insert',
+                views: {
+                    'content@': {
+                        templateUrl: 'partials/news/news-insert.html',
+                        controller: 'newsInsertCtrl'
+                    }
+                }
+            })
+            .state('news.train', {
+                url: ':id/train',
+                views: {
+                    'content@': {
+                        templateUrl: 'partials/news/news-train.html',
+                        controller: 'newsTrainCtrl'
+                    }
+                }
             });
     }]);

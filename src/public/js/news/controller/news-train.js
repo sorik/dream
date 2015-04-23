@@ -1,6 +1,12 @@
 angular.module('myNews')
-  .controller('newsTrainCtrl', function($scope){
+  .controller('newsTrainCtrl', ['$scope', '$stateParams', 'NewsService', function($scope, $stateParams, NewsService) {
     'use strict';
+
+    NewsService.getById($stateParams.id)
+    .then(function(data) {
+        $scope.news = data;
+        $scope.todayWords = $scope.news.content;
+    });
 
     $scope.showTrain = function() {
       $scope.hideTrain = false;
@@ -13,7 +19,7 @@ angular.module('myNews')
     $scope.showTrainWord = function(index) {
       $scope.todayTraining[index] = $scope.todayWords[index];
     };
-  })
+  }])
   .directive('newsWord', function(){
     'use strict';
     return {

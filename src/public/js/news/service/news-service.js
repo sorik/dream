@@ -1,23 +1,32 @@
 angular.module('myNews')
-    .factory('NewsResource', ['$resource', function($resource) {
+    .factory('NewsService', ['$q', '$resource', function($q, $resource) {
         'use strict';
-        return $resource('data/news');
-    }])
-    .factory('NewsService', ['$q', 'NewsResource', function($q, NewsResource) {
-        'use strict';
+
+        var newsResource = $resource('data/news');
+        var newsIdResource = $resource('data/news/:id', {id: '@id'});
+
         return {
             insert: function(data) {
                 var deferred = $q.defer();
-                NewsResource.save(data, function() {
+                newsResource.save(data, function() {
                     deferred.resolve('');
                 }, function(error) {
                     deferred.reject(error.data.message);
                 });
                 return deferred.promise;
             },
-            get: function() {
+            query: function() {
                 var deferred = $q.defer();
-                NewsResource.query(function(data) {
+                newsResource.query(function(data) {
+                    deferred.resolve(data);
+                }, function(error) {
+                    deferred.reject(error.data.message);
+                });
+                return deferred.promise;
+            },
+            getById: function(id) {
+                var deferred = $q.defer();
+                newsIdResource.get({id: id}, function(data) {
                     deferred.resolve(data);
                 }, function(error) {
                     deferred.reject(error.data.message);

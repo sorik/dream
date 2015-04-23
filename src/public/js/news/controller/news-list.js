@@ -3,7 +3,7 @@ angular.module('myNews')
         'use strict';
 
         $scope.errorMessage = '';
-        NewsService.get().then(function(news) {
+        NewsService.query().then(function(news) {
             $scope.newsList = news;
         }, function(error) {
             $scope.errorMessage = 'Failed to retrieve news articles. Try again. ' + '(' + error + ')';

@@ -8,8 +8,4 @@ angular.module('myNews')
         }, function(error) {
             $scope.errorMessage = 'Failed to retrieve news articles. Try again. ' + '(' + error + ')';
         });
-
-        $scope.startTrain = function(news) {
-            $scope.activeMenu = 'Train';
-        };
     });

@@ -1,0 +1,9 @@
+<div ng-controller='newsListCtrl'>
+    <ul>
+        <li ui-sref-active="selected" ng-repeat='news in newsList'>
+            <a ui-sref="news.show({id: news._id})"><span>{{news.title}}</span> @ <span>{{news.timestamp}}</span></a>
+        </li>
+    </ul>
+    <p ng-if='errorMessage.length > 0' ng-bind='errorMessage'></p>
+    <div class="show" ui-view></div>
+</div>

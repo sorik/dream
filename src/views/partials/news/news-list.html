@@ -1,6 +1,6 @@
 <div ng-controller='newsListCtrl'>
     <ul>
-        <li ui-sref-active="selected" ng-repeat='news in newsList'>
+        <li ui-sref-active="selected" ng-repeat='news in newsList' ng-class-even="'list-light-gray'" ng-class-odd="'list-dark-gray'">
             <a ui-sref="news.show({id: news._id})"><span>{{news.title}}</span> @ <span>{{news.timestamp}}</span></a>
         </li>
     </ul>

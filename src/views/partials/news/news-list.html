@@ -1,7 +1,7 @@
 <div ng-controller='newsListCtrl'>
     <input type="text" ng-model="criteria">
     <ul>
-        <li ui-sref-active="selected" ng-repeat='news in currentPage.pageData | orderBy: "-timestamp"' ng-class-even="'list-light-gray'" ng-class-odd="'list-dark-gray'">
+        <li ui-sref-active="selected" ng-repeat='news in currentPage.pageData' ng-class-even="'list-light-gray'" ng-class-odd="'list-dark-gray'">
             <a ui-sref="news.show({id: news._id})"><span>{{news.title}}</span> @ <span>{{news.timestamp}}</span></a>
         </li>
     </ul>

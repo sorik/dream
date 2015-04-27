@@ -1,5 +1,5 @@
 angular.module('myNews')
-    .controller('newsListCtrl', function($scope, NewsService, filterFilter, PageService) {
+    .controller('newsListCtrl', function($scope, NewsService, filterFilter, orderByFilter, PageService) {
         'use strict';
 
         var PAGE_SIZE = 10;
@@ -21,7 +21,7 @@ angular.module('myNews')
 
 
         NewsService.query().then(function(news) {
-            $scope.originalNewsList = news;
+            $scope.originalNewsList = orderByFilter(news, 'timestamp', true);
             $scope.filteredNewsList = $scope.originalNewsList;
             $scope.currentPage = PageService.currentPage($scope.originalNewsList, INITIAL_PAGE, PAGE_SIZE);
         }, function(error) {

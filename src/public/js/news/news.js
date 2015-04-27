@@ -1,4 +1,8 @@
 angular.module('myNews', ['ngResource', 'ui.router'])
+    .constant('NEWS_PAGE', {
+        pageSize: 10,
+        initialPage: 0
+    })
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         'use strict';
 

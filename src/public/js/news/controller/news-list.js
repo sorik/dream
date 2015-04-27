@@ -1,9 +1,10 @@
 angular.module('myNews')
-    .controller('newsListCtrl', function($scope, NewsService, filterFilter, orderByFilter, PageService) {
+    .controller('newsListCtrl', ['$scope', 'filterFilter', 'orderByFilter', 'NEWS_PAGE', 'NewsService', 'PageService',
+        function($scope, filterFilter, orderByFilter, NEWS_PAGE, NewsService, PageService) {
         'use strict';
 
-        var PAGE_SIZE = 10;
-        var INITIAL_PAGE = 0;
+        var PAGE_SIZE = NEWS_PAGE.pageSize;
+        var INITIAL_PAGE = NEWS_PAGE.initialPage;
 
         $scope.maxPageNumber = 0;
         $scope.originalNewsList = [];
@@ -34,4 +35,4 @@ angular.module('myNews')
                 $scope.currentPage = PageService.currentPage($scope.filteredNewsList, INITIAL_PAGE, PAGE_SIZE);
             }
          });
-    });
+    }]);

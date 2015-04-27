@@ -1,25 +1,37 @@
 angular.module('myNews')
-    .controller('newsListCtrl', function($scope, NewsService) {
+    .controller('newsListCtrl', function($scope, NewsService, filterFilter, PageService) {
         'use strict';
 
-        $scope.pageSize = 10;
-        $scope.currentPage = 0;
-        $scope.maxPageNumber = 0;
+        var PAGE_SIZE = 10;
+        var INITIAL_PAGE = 0;
 
-        $scope.newsList = [];
+        $scope.maxPageNumber = 0;
+        $scope.originalNewsList = [];
+        $scope.filteredNewsList = [];
         $scope.errorMessage = '';
+        $scope.currentPage = {};
+
+        $scope.prevPage = function() {
+            $scope.currentPage = PageService.prevPage($scope.filteredNewsList, $scope.currentPage.pageNum, PAGE_SIZE);
+        };
+
+        $scope.nextPage = function() {
+            $scope.currentPage = PageService.nextPage($scope.filteredNewsList, $scope.currentPage.pageNum, PAGE_SIZE);
+        };
+
+
         NewsService.query().then(function(news) {
-            $scope.newsList = news;
-            $scope.maxPageNumber = Math.ceil($scope.newsList.length / $scope.pageSize);
+            $scope.originalNewsList = news;
+            $scope.filteredNewsList = $scope.originalNewsList;
+            $scope.currentPage = PageService.currentPage($scope.originalNewsList, INITIAL_PAGE, PAGE_SIZE);
         }, function(error) {
             $scope.errorMessage = 'Failed to retrieve news articles. Try again. ' + '(' + error + ')';
         });
 
-        $scope.prevPage = function() {
-            $scope.currentPage = $scope.currentPage > 0 ? $scope.currentPage - 1 : 0;
-        };
-
-        $scope.nextPage = function() {
-            $scope.currentPage = $scope.currentPage < $scope.maxPageNumber ? $scope.currentPage + 1 : $scope.maxPageNumber;
-        };
+        $scope.$watch('criteria', function(criteria) {
+            if ($scope.originalNewsList.length > 0) {
+                $scope.filteredNewsList = filterFilter($scope.originalNewsList, criteria);
+                $scope.currentPage = PageService.currentPage($scope.filteredNewsList, INITIAL_PAGE, PAGE_SIZE);
+            }
+         });
     });

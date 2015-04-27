@@ -14,7 +14,7 @@ module.exports = function(config) {
             'src/public/js/news/news.js',
             'src/public/js/expense/expense.js',
             'src/public/js/{,**/}*.js',
-            'tests/unit/{,*/}*.js'
+            'tests/unit/{,**/}*.js'
         ],
 
         exclude: [],

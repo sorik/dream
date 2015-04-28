@@ -20,8 +20,10 @@ describe('newsInsertCtrl', function() {
 
 	describe('addNews', function() {
 		it('should call NewsService insert with the correct data', function() {
-			scope.title = 'test title';
-			scope.content = 'test content';
+			scope.news = {
+				title: 'test title',
+				content: 'test content'
+			};
 			var mockNow = new Date();
 			jasmine.clock().mockDate(mockNow);
 			spyOn(NewsService, 'insert').and.callFake(function() {
@@ -42,6 +44,10 @@ describe('newsInsertCtrl', function() {
 		describe('result message', function() {
 			describe('when successfully inserted', function() {
 				beforeEach(function(){
+					scope.news = {
+						title: 'whatever',
+						content: 'whatever'
+					};
 					spyOn(NewsService, 'insert').and.callFake(function() {
 						var deferred = q.defer();
 						deferred.resolve('saved');
@@ -67,6 +73,10 @@ describe('newsInsertCtrl', function() {
 
 			describe('when failed to insert', function() {
 				beforeEach(function() {
+					scope.news = {
+						title: 'whatever',
+						content: 'whatever'
+					};
 					spyOn(NewsService, 'insert').and.callFake(function() {
 						var deferred = q.defer();
 						deferred.reject('failed');

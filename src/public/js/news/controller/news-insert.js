@@ -1,5 +1,6 @@
 angular.module('myNews')
-    .controller('newsInsertCtrl', function($scope, $timeout, NewsService) {
+    .controller('newsInsertCtrl',
+        ['$scope', '$timeout', 'NewsService', function($scope, $timeout, NewsService) {
         'use strict';
 
         $scope.savingResult = '';
@@ -10,11 +11,8 @@ angular.module('myNews')
         };
 
         $scope.addNews = function() {
-            NewsService.insert({
-                    'title': $scope.title,
-                    'content': $scope.content,
-                    'timestamp': new Date()
-                }).then(function(){
+            $scope.news.timestamp = new Date();
+            NewsService.insert($scope.news).then(function(){
                     $scope.title = '';
                     $scope.content = '';
                     $scope.savingResult = 'Successfully saved.';
@@ -24,4 +22,12 @@ angular.module('myNews')
                     stopDisplayResultMessage(3000);
                 });
         };
-    });
+
+        $scope.showFormError = function(ngModelController, error) {
+            return ngModelController.$error[error];
+        };
+
+        $scope.canSave = function() {
+            return $scope.insertForm.$dirty && $scope.insertForm.$valid;
+        };
+    }]);

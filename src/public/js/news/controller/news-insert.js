@@ -13,8 +13,8 @@ angular.module('myNews')
         $scope.addNews = function() {
             $scope.news.timestamp = new Date();
             NewsService.insert($scope.news).then(function(){
-                    $scope.title = '';
-                    $scope.content = '';
+                    $scope.news = {};
+                    $scope.insertForm.$setPristine();
                     $scope.savingResult = 'Successfully saved.';
                     stopDisplayResultMessage(3000);
                 }, function(error) {
